@@ -1,0 +1,28 @@
+component SPV1050TTR:
+    # component SPV1050TTR
+    footprint = "WQFN-20_L3.0-W3.0-P0.40-BL-EP1.7"
+    lcsc_id = "C5181469"
+    mpn = "C5181469"
+    # pins
+    signal MPP ~ pin 1
+    signal MPP_SET ~ pin 2
+    signal MPP_REF ~ pin 3
+    signal GND ~ pin 4
+    signal LDO1_EN ~ pin 5
+    signal LDO2_EN ~ pin 6
+    signal BATT_CHG_hash ~ pin 7
+    signal BATT_CONN_hash ~ pin 8
+    signal EOC ~ pin 9
+    signal UVP ~ pin 10
+    signal LDO1 ~ pin 11
+    signal LOD2 ~ pin 12
+    signal CONF ~ pin 13
+    signal BATT ~ pin 14
+    signal STORE ~ pin 15
+    signal IN_LV ~ pin 16
+    signal NC ~ pin 17
+    signal PGND ~ pin 18
+    signal L_HV ~ pin 19
+    signal IN_HV ~ pin 20
+    GND ~ pin 21
+
