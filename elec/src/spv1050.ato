@@ -8,6 +8,8 @@ module Spv1050:
     power = new Power
     Vpv = new Power
     Vbat = new Power
+    LDO1 = new Power
+    LDO2 = new Power
 
     # Components
     ic = new SPV1050TTR
@@ -27,8 +29,15 @@ module Spv1050:
     C5 = new Capacitor; C5.value = 100nF +/- 10%; C5.package = "0201"
 
     # Connections
-    power.gnd ~ Vpv.gnd; power.gnd ~ Vbat.gnd
+    power.gnd ~ Vpv.gnd; power.gnd ~ Vbat.gnd; ic.GND ~ power.gnd; ic.PGND ~ power.gnd; LDO1.gnd ~ power.gnd; LDO2.gnd ~ power.gnd
     ic.MPP_REF ~ C34.p1; C34.p2 ~ power.gnd
+    Vpv.vcc ~ Rmpp.p1; Rmpp.p2 ~ ic.MPP; ic.MPP ~ Rmpps.p1; Rmpps.p2 ~ ic.MPP_SET; ic.MPP_SET ~ Rin.p1; Rin.p2 ~ power.gnd
+    Vpv ~ C6.power
+    ic.L_HV ~ L1.p1; L1.p2 ~ ic.IN_LV
+    ic.STORE ~ C9.p1; ic.STORE ~ C10.p1; C9.p2 ~ power.gnd; C10.p2 ~ power.gnd
+    ic.STORE ~ Ruvp.p1; Ruvp.p2 ~ ic.UVP; ic.UVP ~ Cuvp.p1; Cuvp.p2 ~ power.gnd; ic.UVP ~ Reoc.p1; Reoc.p2 ~ ic.EOC; ic.EOC ~ Rout.p1; Rout.p2 ~ power.gnd
+    ic.LDO1 ~ LDO1.vcc; LDO1.vcc ~ C5.p1; C5.p2 ~ power.gnd
+    ic.LDO2 ~ LDO2.vcc; LDO2.vcc ~ C4.p1; C4.p2 ~ power.gnd
 
 component SPV1050TTR:
     # component SPV1050TTR
@@ -47,7 +56,7 @@ component SPV1050TTR:
     signal EOC ~ pin 9
     signal UVP ~ pin 10
     signal LDO1 ~ pin 11
-    signal LOD2 ~ pin 12
+    signal LDO2 ~ pin 12
     signal CONF ~ pin 13
     signal BATT ~ pin 14
     signal STORE ~ pin 15
