@@ -69,7 +69,7 @@ component SPV1050TTR:
 
 component LQH3NPN220MJRL:
     # component LQH3NPN220MJRL
-    footprint = "SMD,3x3mm"
+    footprint = "IND-SMD_L3.0-W3.0_LQH3NPN"
     lscs_id = "C110302"
     mpn = "C110302"
     # pins

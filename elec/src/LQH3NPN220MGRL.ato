@@ -1,0 +1,9 @@
+component LQH3NPN220MGRL:
+    # component LQH3NPN220MGRL
+    footprint = "IND-SMD_L3.0-W3.0_LQH3NPN"
+    lcsc_id = "C237408"
+    mpn = "C237408"
+    # pins
+    signal _2 ~ pin 2
+    signal _1 ~ pin 1
+
