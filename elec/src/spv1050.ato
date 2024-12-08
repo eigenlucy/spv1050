@@ -1,9 +1,68 @@
 from "generics/interfaces.ato" import Power
-from "SPV1050TTR.ato" import SPV1050TTR
 from "generics/inductors.ato" import Inductor
 from "generics/capacitors.ato" import Capacitor
 from "generics/resistors.ato" import Resistor
 from "generics/diodes.ato" import Diode
 
 module Spv1050:
-    signal gnd
+    power = new Power
+    Vpv = new Power
+    Vbat = new Power
+
+    # Components
+    ic = new SPV1050TTR
+    Rmpp = new Resistor; Rmpp.value = 10Mohm +/- 1%; Rmpp.package = "0201"
+    Rmpps = new Resistor; Rmpps.value = 680kohm +/- 1%; Rmpps.package = "0201"
+    Rin = new Resistor; Rin.value = 3Mohm +/- 1%; Rin.package = "0201"
+    C6 = new Capacitor; C6.value = 1uF +/- 10%; C6.package = "0402"
+    C34 = new Capacitor; C34.value = 10uF +/- 10%; C34.package = "0402"
+    L1 = new LQH3NPN220MJRL
+    Cuvp = new Capacitor; Cuvp.value = 470nF +/- 10%; Cuvp.package = "0201"
+    C9 = new Capacitor; C9.value = 47uF +/- 10%; C9.package = "0603"
+    C10 = new Capacitor; C10.value = 47uF +/- 10%; C10.package = "0603"
+    Ruvp = new Resistor; Ruvp.value = 6.8Mohm +/- 5%; Ruvp.package = "0201"
+    Reoc = new Resistor; Reoc.value = 750kohm +/- 5%; Reoc.package = "0201"
+    Rout = new Resistor; Rout.value = 3Mohm +/- 5%; Rout.package = "0201"
+    C4 = new Capacitor; C4.value = 100nF +/- 10%; C4.package = "0201"
+    C5 = new Capacitor; C5.value = 100nF +/- 10%; C5.package = "0201"
+
+    # Connections
+    power.gnd ~ Vpv.gnd; power.gnd ~ Vbat.gnd
+    ic.MPP_REF ~ C34.p1; C34.p2 ~ power.gnd
+
+component SPV1050TTR:
+    # component SPV1050TTR
+    footprint = "WQFN-20_L3.0-W3.0-P0.40-BL-EP1.7"
+    lcsc_id = "C5181469"
+    mpn = "C5181469"
+    # pins
+    signal MPP ~ pin 1
+    signal MPP_SET ~ pin 2
+    signal MPP_REF ~ pin 3
+    signal GND ~ pin 4
+    signal LDO1_EN ~ pin 5
+    signal LDO2_EN ~ pin 6
+    signal BATT_CHG_hash ~ pin 7
+    signal BATT_CONN_hash ~ pin 8
+    signal EOC ~ pin 9
+    signal UVP ~ pin 10
+    signal LDO1 ~ pin 11
+    signal LOD2 ~ pin 12
+    signal CONF ~ pin 13
+    signal BATT ~ pin 14
+    signal STORE ~ pin 15
+    signal IN_LV ~ pin 16
+    signal NC ~ pin 17
+    signal PGND ~ pin 18
+    signal L_HV ~ pin 19
+    signal IN_HV ~ pin 20
+    GND ~ pin 21
+
+component LQH3NPN220MJRL:
+    # component LQH3NPN220MJRL
+    footprint = "SMD,3x3mm"
+    lscs_id = "C110302"
+    mpn = "C110302"
+    # pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
