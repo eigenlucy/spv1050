@@ -1,0 +1,11 @@
+component _1_period_27_minus_2P_space_TPPT:
+    # component _1_period_27_minus_2P_space_TPPT
+    footprint = "SW-SMD_2P-L5.4-W4.1-P1.27-LS8.4"
+    lcsc_id = "C7421516"
+    mpn = "C7421516"
+    # pins
+    signal _2 ~ pin 2
+    signal _3 ~ pin 3
+    signal _4 ~ pin 4
+    signal _1 ~ pin 1
+

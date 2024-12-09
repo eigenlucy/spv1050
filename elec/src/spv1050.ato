@@ -3,6 +3,8 @@ from "generics/inductors.ato" import Inductor
 from "generics/capacitors.ato" import Capacitor
 from "generics/resistors.ato" import Resistor
 from "generics/diodes.ato" import Diode
+from "_1_period_27_minus_2P_space_TPPT.ato" import _1_period_27_minus_2P_space_TPPT
+from "LQH3NPN220MGRL.ato" import LQH3NPN220MGRL
 
 module Spv1050:
     power = new Power
@@ -18,7 +20,7 @@ module Spv1050:
     Rin = new Resistor; Rin.value = 3Mohm +/- 1%; Rin.package = "0201"
     C6 = new Capacitor; C6.value = 1uF +/- 10%; C6.package = "0402"
     C34 = new Capacitor; C34.value = 10uF +/- 10%; C34.package = "0402"
-    L1 = new LQH3NPN220MJRL
+    L1 = new LQH3NPN220MGRL
     Cuvp = new Capacitor; Cuvp.value = 470nF +/- 10%; Cuvp.package = "0201"
     C9 = new Capacitor; C9.value = 47uF +/- 10%; C9.package = "0603"
     C10 = new Capacitor; C10.value = 47uF +/- 10%; C10.package = "0603"
@@ -27,6 +29,7 @@ module Spv1050:
     Rout = new Resistor; Rout.value = 3Mohm +/- 5%; Rout.package = "0201"
     C4 = new Capacitor; C4.value = 100nF +/- 10%; C4.package = "0201"
     C5 = new Capacitor; C5.value = 100nF +/- 10%; C5.package = "0201"
+    SEL_SW = new _1_period_27_minus_2P_space_TPPT
 
     # Connections
     power.gnd ~ Vpv.gnd; power.gnd ~ Vbat.gnd; ic.GND ~ power.gnd; ic.PGND ~ power.gnd; LDO1.gnd ~ power.gnd; LDO2.gnd ~ power.gnd
@@ -38,6 +41,8 @@ module Spv1050:
     ic.STORE ~ Ruvp.p1; Ruvp.p2 ~ ic.UVP; ic.UVP ~ Cuvp.p1; Cuvp.p2 ~ power.gnd; ic.UVP ~ Reoc.p1; Reoc.p2 ~ ic.EOC; ic.EOC ~ Rout.p1; Rout.p2 ~ power.gnd
     ic.LDO1 ~ LDO1.vcc; LDO1.vcc ~ C5.p1; C5.p2 ~ power.gnd
     ic.LDO2 ~ LDO2.vcc; LDO2.vcc ~ C4.p1; C4.p2 ~ power.gnd
+    ic.CONF ~ power.gnd
+
 
 component SPV1050TTR:
     # component SPV1050TTR
@@ -66,12 +71,3 @@ component SPV1050TTR:
     signal L_HV ~ pin 19
     signal IN_HV ~ pin 20
     GND ~ pin 21
-
-component LQH3NPN220MJRL:
-    # component LQH3NPN220MJRL
-    footprint = "IND-SMD_L3.0-W3.0_LQH3NPN"
-    lscs_id = "C110302"
-    mpn = "C110302"
-    # pins
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2

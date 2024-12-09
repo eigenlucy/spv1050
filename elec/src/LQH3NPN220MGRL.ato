@@ -4,6 +4,6 @@ component LQH3NPN220MGRL:
     lcsc_id = "C237408"
     mpn = "C237408"
     # pins
-    signal _2 ~ pin 2
-    signal _1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p1 ~ pin 1
 
